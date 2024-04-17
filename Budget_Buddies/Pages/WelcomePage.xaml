@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.WelcomePage">
 
+   
     <Grid RowDefinitions="*,*,60,160,50,50,90"
      ColumnDefinitions="*,*,*,*,*">
         <Border Grid.Row="0"
@@ -37,15 +38,16 @@
 
 
         <Border
-              Grid.Row="1"
-              Grid.RowSpan="3"
+              Grid.Row="0"
+              Grid.RowSpan="6"
               Grid.Column="0"
               Grid.ColumnSpan="5"
               BackgroundColor="#CAE6EC"
-              HeightRequest="350"
-              WidthRequest="350"
+              Stroke="#CAE6EC"
+              HeightRequest="370"
+              WidthRequest="370"
               StrokeShape="Ellipse"
-              Margin="0,0,0,0"
+              Margin="0,45,0,0"
           />
 
         <Button 
@@ -54,43 +56,43 @@
             Grid.Column="1"
             Grid.ColumnSpan="3"
             Text="Guest Sign In" 
-            Margin="70,35,70,125"
+            Margin="70,50,70,110"
             BackgroundColor="#5499B7"
             Clicked="OnGuestSignInClicked"/>
 
         <Label
             Text="Welcome"
-            FontSize="50"
-            FontAttributes="Bold"
+            FontFamily="BeauRivage"
+            FontSize="65"
             TextColor="#FF7171"
             Grid.Row="0"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Margin="40,60,0,0"
+            Margin="50,30,0,0"
             />
 
         <Label
             Text="to"
-            FontSize="40"
-            FontAttributes="Bold"
+            FontFamily="BeauRivage"
+            FontSize="45"
             TextColor="#164D63"
             Grid.Row="0"
             Grid.RowSpan="2"
             Grid.Column="2"
             Grid.ColumnSpan="3"
-            Margin="30,190,0,0"
+            Margin="35,180,0,0"
             />
 
         <Label
             Text="Simple Saver"
-            FontSize="40"
-            FontAttributes="Bold"
+            FontFamily="BeauRivage"
+            FontSize="50"
             TextColor="#164D63"
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Margin="30,100,0,0"
+            Margin="48,100,0,0"
     />
         <Border Grid.Row="7"
            Grid.Column="0"

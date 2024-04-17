@@ -1,12 +1,125 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Budget_Buddies.Pages.SettingsPage"
-             Title="SettingsPage">
+             x:Class="Budget_Buddies.Pages.SettingsPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label
+            Text="Settings"
+            FontFamily="ARIBLO"
+            FontSize="45"
+            TextColor="#216C92"
+            HorizontalOptions="Center"
+            Margin="0,20,0,0"
+                />
+        <Border 
+            VerticalOptions="Center"
+            WidthRequest="350"
+            HeightRequest="500"
+            BackgroundColor="White"
+            StrokeShape="RoundRectangle 30"
+            Stroke="White"
+            Margin="0,80,0,0"
+            >
+            <Border.Shadow>
+                <Shadow Brush="#E1C2C2"
+                        Opacity="10"
+                         />
+            </Border.Shadow>
+            <Grid RowDefinitions="Auto,Auto,30,Auto,Auto,Auto"
+                ColumnDefinitions="*,*">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="    Budget Preferences"
+                    FontFamily="ARIBLO"
+                    FontSize="18"
+                    TextColor="#2A496F"
+                    HorizontalOptions="Center"
+                    Padding="15"
+                    Margin="0,20,0,0"/>
+
+                <Entry
+                    x:Name="BudgetPreference"
+                    Text="$ Enter Budget"
+                    FontFamily="ARIBLO"
+                    FontSize="17"
+                    TextColor="#5B98A6"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    WidthRequest="150"
+                    HeightRequest="30"
+                    HorizontalOptions="Center"
+                    Margin="0,15,10,0"/>
+
+                <Label
+                    Text="Color Themes"
+                    FontFamily="ARIBLO"
+                    FontSize="18"
+                    TextColor="#2A496F"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Padding="15"
+                    Margin="0,30,0,0"
+                    />
+  
+                <RadioButton
+                    x:Name="LighThemePreference"
+                    Content="Light"
+                    FontFamily="ARIBLO"
+                    FontSize="18"
+                    TextColor="#5B98A6"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0"/>
+                
+                <RadioButton
+                    x:Name="DarkThemePreference"
+                    Content="Dark"
+                    FontFamily="ARIBLO"
+                    FontSize="18"
+                    TextColor="#5B98A6"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="Your Name"
+                    FontFamily="ARIBLO"
+                    FontSize="18"
+                    TextColor="#2A496F"
+                    HorizontalOptions="Center"
+                    Padding="15"
+                    Margin="0,20,0,0"/>
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="Placeholder"
+                    FontFamily="ARIBLO"
+                    FontSize="18"
+                    TextColor="#5B98A6"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,20,25,0"/>
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontFamily="ARIBLO"
+                    FontSize="16"
+                    TextColor="#2847DC"
+                    HorizontalOptions="Center"
+                    Background="Transparent"
+                    Text="Change Name"
+                    BorderColor="Transparent"/>
+
+            </Grid>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

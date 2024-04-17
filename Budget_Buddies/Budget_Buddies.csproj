@@ -59,6 +59,9 @@
 	<ItemGroup>
 	  <None Remove="Pages\" />
 	  <None Remove="Models\" />
+	  <None Remove="Resources\Fonts\ArialTh.ttf" />
+	  <None Remove="Resources\Fonts\ARIBL0.ttf" />
+	  <None Remove="Resources\Fonts\BeauRivage-Regular.ttf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />

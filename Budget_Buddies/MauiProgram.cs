@@ -9,11 +9,14 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("BeauRivage-Regular.ttf", "BeauRivage");
+                fonts.AddFont("ArialTh.ttf", "ArialTh");
+                fonts.AddFont("ARIBLO.ttf", "ARIBLO");
+            });
 
 #if DEBUG
 		builder.Logging.AddDebug();
