@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.11
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget_Buddies", "Budget_Buddies\Budget_Buddies.csproj", "{A557155E-6F06-416E-9A6C-C3F345B912CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27C501E2-7A74-446B-89A0-A081A8968F9F}
+	EndGlobalSection
+EndGlobal

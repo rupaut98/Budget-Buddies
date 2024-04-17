@@ -1,0 +1,19 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Budget_Buddies.Pages.MonthlySummaryPage"
+             Title="Monthly Summary">
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30">
+            <Label Text="Monthly Summary" FontSize="Large" HorizontalOptions="Center"/>
+
+            <!-- Totals for each category -->
+            <Label x:Name="FoodTotalLabel" Text="Amount for Food = $" />
+            <Label x:Name="UtilitiesTotalLabel" Text="Amount for Utilities = $" />
+            <Label x:Name="RentTotalLabel" Text="Amount for Rent = $" />
+            <Label x:Name="EntertainmentTotalLabel" Text="Amount for Entertainment = $" />
+
+            <!-- Most expensive entry -->
+            <Label x:Name="MostExpensiveLabel" Text="Most Expensive = $" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

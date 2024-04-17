@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Budget_Buddies.Pages.MenuPage"
+             Title="Menu">
+
+    <VerticalStackLayout Spacing="15" Padding="30" VerticalOptions="Center">
+        <Label Text="Simple Saver" FontAttributes="Italic" FontSize="30" HorizontalOptions="Center"/>
+        <Label Text="Menu" FontSize="24" HorizontalOptions="Center"/>
+        
+        <Button Text="Home Page" 
+                Clicked="OnHomePageClicked"/>
+        <Button Text="Expense Log" 
+                Clicked="OnExpenseLogClicked"/>
+        <Button Text="Monthly Summary" 
+                Clicked="OnMonthlySummaryClicked"/>
+        <Button Text="Settings" 
+                Clicked="OnSettingsClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

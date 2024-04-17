@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Budget_Buddies.Pages.ExpenseLogPage"
+             Title="Expenses Log">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30">
+            <Label Text="Expenses Log" FontSize="Large" HorizontalOptions="Center"/>
+
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Food" Grid.Row="0" Grid.Column="0"/>
+                    <Entry x:Name="FoodExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="$" Grid.Row="0" Grid.Column="2"/>
+                </Grid>
+            </Frame>
+            
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Utilities" Grid.Row="0" Grid.Column="0"/>
+                     <Entry x:Name="UtilitiesExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="$" Grid.Row="0" Grid.Column="2"/>
+                </Grid>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Rent" Grid.Row="0" Grid.Column="0"/>
+                     <Entry x:Name="RentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="$" Grid.Row="0" Grid.Column="2"/>
+                </Grid>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Entertainment" Grid.Row="0" Grid.Column="0"/>
+                     <Entry x:Name="EntertainmentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="$" Grid.Row="0" Grid.Column="2"/>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

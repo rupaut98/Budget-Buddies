@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Budget_Buddies.Pages.WelcomePage"
+             Title="WelcomePage">
+
+    <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+        <Label Text="Welcome" FontSize="Large" HorizontalOptions="Center"/>
+        <Label Text="to" FontSize="Large" HorizontalOptions="Center"/>
+        <Label Text="Simple Saver" FontSize="Large" HorizontalOptions="Center"/>
+        
+        <Button Text="Guest Sign In" 
+                HorizontalOptions="FillAndExpand"
+                Clicked="OnGuestSignInClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
