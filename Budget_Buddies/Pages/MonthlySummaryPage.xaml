@@ -11,24 +11,12 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             x:Name="chartView"
-            WidthRequest="410"
-            HeightRequest="300"
+            WidthRequest="270"
+            HeightRequest="270"
             HorizontalOptions="Center"
-            Margin="20,10,50,0"
-              />
+            Margin="0,20,0,0"
+            BackgroundColor="Transparent"/>
 
-        <Label
-            x:Name="MostExpensiveLabel"
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Text="Most Expensive"
-            FontFamily="ARIBLO"
-            FontSize="18"
-            TextColor="#2A496F"
-            HorizontalOptions="Center"
-            Margin="0,0,0,0"
-            />
         <Border 
             Grid.Row="1"
             Grid.RowSpan="3"
@@ -39,7 +27,7 @@
             BackgroundColor="White"
             StrokeShape="RoundRectangle 30"
             Stroke="White"
-            Margin="0,70,0,0"
+            Margin="0,80,0,0"
            >
             <Border.Shadow>
                 <Shadow Brush="#E1C2C2"
@@ -47,137 +35,183 @@
                         />
             </Border.Shadow>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-               ColumnDefinitions="210,Auto,Auto">
+               ColumnDefinitions="50,180,20,Auto">
+
+                <Border 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Stroke="#164D63"
+                    BackgroundColor="#164D63"
+                    HeightRequest="15"
+                    WidthRequest="15"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Margin="0,20,0,0"
+                    />
+
+                <Border 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Stroke="#CAE6EC"
+                    BackgroundColor="#CAE6EC"
+                    HeightRequest="15"
+                    WidthRequest="15"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Margin="0,5,0,0"
+                    />
+
+                <Border 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Stroke="#FF7171"
+                    BackgroundColor="#FF7171"
+                    HeightRequest="15"
+                    WidthRequest="15"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Margin="0,5,0,0" />
+
+                <Border 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Stroke="#FAE6E6"
+                    BackgroundColor="#FAE6E6"
+                    HeightRequest="15"
+                    WidthRequest="15"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Margin="0,5,0,0" />
+
                 <Label
                    Grid.Row="0"
-                   Grid.Column="0"
+                   Grid.Column="1"
                    Text="Amount for Food"
                    FontFamily="ARIBLO"
                    FontSize="18"
                    TextColor="#2A496F"
                    HorizontalOptions="Start"
-                   Margin="40,35,0,0"/>
+                   Margin="10,35,0,0"/>
 
                 <Label 
                     Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="1"
                     Text="="
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     VerticalTextAlignment="Center"
-                    HorizontalOptions="End"
-                    Margin="0,20,20,0"
+                    HorizontalOptions="Start"
+                    Margin="0,20,0,0"
                     />
 
                 <Label 
                     x:Name="FoodTotalLabel"
                     Grid.Row="0"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Text=""
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
                     Padding="15"
-                    Margin="10,20,0,0"
+                    Margin="0,20,0,0"
                     />
 
                 <Label
                     Grid.Row="1"
-                    Grid.Column="0"
-                    Text="Amount for Utilies"
+                    Grid.Column="1"
+                    Text="Amount for Utilities"
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
-                    Margin="40,20,0,0"/>
+                    Margin="10,20,0,0"/>
 
                 <Label 
                     Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="1"
                     Text="="
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
-                    HorizontalOptions="End"
-                    Margin="0,20,20,0"/>
+                    HorizontalOptions="Start"
+                    Margin="0,20,0,0"/>
 
                 <Label
                     x:Name="UtilitiesTotalLabel"
                     Grid.Row="1"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Text=""
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
                     Padding="15"
-                    Margin="10,5,0,0"/>
+                    Margin="0,5,0,0"/>
 
                 <Label
                     Grid.Row="2"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Text="Amount for Rent"
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
-                    Margin="40,20,0,0"/>
+                    Margin="10,20,0,0"/>
 
                 <Label 
                     Grid.Row="2"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Text="="
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
-                    HorizontalOptions="End"
-                    Margin="0,20,20,0"/>
+                    HorizontalOptions="Start"
+                    Margin="0,20,0,0"/>
 
                 <Label
                     x:Name="RentTotalLabel"
                     Grid.Row="2"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Text=""
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
                     Padding="15"
-                    Margin="10,5,0,0"/>
+                    Margin="0,5,0,0"/>
 
                 <Label
                     Grid.Row="3"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Text="Amount for"
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
-                    Margin="40,15,0,0"/>
+                    Margin="10,15,0,0"/>
                 <Label
                     Grid.Row="3"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Text="Entertainment"
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
-                    Margin="40,40,0,0"/>
+                    Margin="10,40,0,0"/>
 
                 <Label 
                     Grid.Row="3"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Text="="
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
-                    VerticalTextAlignment="Center"
-                    HorizontalOptions="End"
-                    Margin="0,10,20,0"/>
+                    HorizontalOptions="Start"
+                    Margin="0,30,0,0"/>
 
                 <Label
                     x:Name="EntertainmentTotalLabel"
@@ -187,41 +221,41 @@
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
+                    VerticalOptions="Center"
                     HorizontalOptions="Start"
                     Padding="15"
-                    Margin="10,10,0,0"/>
+                    Margin="0,15,0,0"/>
 
                 <Label
                     Grid.Row="4"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Text="Total spent"
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
-                    Margin="40,40,0,0"/>
+                    Margin="10,35,0,0"/>
 
                 <Label 
                     Grid.Row="4"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Text="="
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
-                    VerticalTextAlignment="Center"
-                    HorizontalOptions="End"
-                    Margin="0,40,20,0"/>
+                    HorizontalOptions="Start"
+                    Margin="0,35,0,0"/>
 
                 <Label
                     x:Name="Total"
                     Grid.Row="4"
-                    Grid.Column="3"
+                    Grid.Column="4"
                     Text=""
                     FontFamily="ARIBLO"
                     FontSize="18"
                     TextColor="#2A496F"
                     HorizontalOptions="Start"
-                    Margin="25,40,0,0"/>
+                    Margin="15,35,0,0"/>
             </Grid>
         </Border>
 

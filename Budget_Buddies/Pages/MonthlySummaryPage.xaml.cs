@@ -20,7 +20,7 @@ public partial class MonthlySummaryPage : ContentPage
 
         ChartEntry[] entries = DisplayChart();
 
-        chartView.Chart = new PieChart()
+        chartView.Chart = new DonutChart
         {
             Entries = entries,
             IsAnimated = true,
@@ -35,26 +35,19 @@ public partial class MonthlySummaryPage : ContentPage
        {
             new ChartEntry(Food)
             {
-                Label = "Food",
-                ValueLabel= Food.ToString(),
+
                 Color = SKColor.Parse("#164D63")
             },
             new ChartEntry(Utilities)
             {
-                Label = "Utilities",
-                ValueLabel = Utilities.ToString(),
-                Color = SKColor.Parse("#FF7171")
+                Color = SKColor.Parse("#CAE6EC")
             },
             new ChartEntry(Rent)
             {
-                Label = "Rent",
-                ValueLabel= Rent.ToString(),
-                Color = SKColor.Parse("#CAE6EC")
+                Color = SKColor.Parse("#FF7171")
             },
             new ChartEntry(Entertainment)
             {
-                Label = "Entertainment",
-                ValueLabel= Entertainment.ToString(),
                 Color = SKColor.Parse("#FAE6E6")
             },
         };
