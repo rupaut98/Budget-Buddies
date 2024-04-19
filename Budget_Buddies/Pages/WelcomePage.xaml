@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Budget_Buddies.Pages.WelcomePage">
+             x:Class="Budget_Buddies.Pages.WelcomePage"
+             BackgroundColor="White">
 
-   
     <Grid RowDefinitions="*,*,60,160,50,50,90"
      ColumnDefinitions="*,*,*,*,*">
         <Border Grid.Row="0"
@@ -21,14 +21,16 @@
               Stroke="#FAE6E6"
               />
         
-        <Border Grid.Row="4"
+        <Border 
+              Grid.Row="4"
               Grid.RowSpan="2"
               Grid.Column="0"
               Grid.ColumnSpan="5"
               BackgroundColor="#FAE6E6"
              />
 
-        <Border Grid.Row="3"
+        <Border 
+              Grid.Row="3"
               Grid.RowSpan="6"
               Grid.Column="0"
               Grid.ColumnSpan="6"
@@ -61,17 +63,6 @@
             Clicked="OnGuestSignInClicked"/>
 
         <Label
-            Text="Welcome"
-            FontFamily="BeauRivage"
-            FontSize="65"
-            TextColor="#FF7171"
-            Grid.Row="0"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Margin="50,30,0,0"
-            />
-
-        <Label
             Text="to"
             FontFamily="BeauRivage"
             FontSize="45"
@@ -80,7 +71,7 @@
             Grid.RowSpan="2"
             Grid.Column="2"
             Grid.ColumnSpan="3"
-            Margin="35,180,0,0"
+            Margin="30,180,0,0"
             />
 
         <Label
@@ -92,7 +83,7 @@
             Grid.RowSpan="2"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Margin="48,100,0,0"
+            Margin="28,100,0,0"
     />
         <Border Grid.Row="7"
            Grid.Column="0"
@@ -116,6 +107,41 @@
             Stroke="#D8F3FF"
             StrokeThickness="6"
             StrokeShape="RoundRectangle 200 0 0 0"/>
+        
+        <Border 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            BackgroundColor="#FAE6E6"
+            Stroke="#FAE6E6"
+            Margin="0,-50,0,30"/>
+
+        <Label
+            Text="Welcome"
+            FontFamily="BeauRivage"
+            FontSize="65"
+            TextColor="#FF7171"
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Margin="50,30,0,0"/>
+
+        <Border 
+            Grid.Row="6"
+            Grid.Column="0"
+            BackgroundColor="#E1B5B5"
+            Stroke="#E1B5B5"
+            StrokeShape="Ellipse"
+            Margin="-20,20,20,-20"/>
+
+        <Border 
+            Grid.Row="0"
+            Grid.Column="4"
+            BackgroundColor="#B1DCED"
+            Stroke="#B1DCED"
+            StrokeShape="Ellipse"
+            Margin="20,-80,-50,140"/>
+
     </Grid>
 
 </ContentPage>

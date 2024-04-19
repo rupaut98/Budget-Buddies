@@ -1,5 +1,6 @@
 ﻿using Budget_Buddies.Pages;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.Maui.Storage;
 
@@ -25,7 +26,6 @@ public partial class App : Application
         DatabaseConnection = new SqliteConnection($"Filename={dbPath}");
 
         DatabaseConnection.Open();
-
         // Correctly formatted SQL command
         string tableCommand = @"
             CREATE TABLE IF NOT EXISTS Expenses (
