@@ -3,10 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.HomePage"
              Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+	<ScrollView>
+		<VerticalStackLayout Spacing="25" Padding="20">
+
+			<Label Text="Home Page" FontSize="Large" HorizontalOptions="Center"/>
+
+			<Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<Label Text="Budget" Grid.Row="0" Grid.Column="0"/>
+					<Entry x:Name="BudgetEntry" Placeholder="enter budget" Completed="OnBudgetEntered" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"/>
+					
+					<Label Text="Left" Grid.Row="0" Grid.Column="1"/>
+					<Label x:Name="LeftAmount" Text="" Grid.row="1" Grid.Column="1"/>
+				</Grid>
+			</Frame>
+
+			<Label Text="Most Recent Expenses:" HorizontalOptions="Center"/>
+
+			<Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
+				<HorizontalStackLayout>
+					<Entry x:Name="ExpenseName" Placeholder="Expense1" Completed="OnRecentExpenseNameEntered"/>
+					<Label Text=" = "/>
+					<Entry x:Name="ExpenseAmount" Placeholder="enter cost" Completed="OnRecentExpenseEntered" Keyboard="Numeric"/>
+				</HorizontalStackLayout>
+			</Frame>
+		</VerticalStackLayout>
+	</ScrollView>
+	
 </ContentPage>
