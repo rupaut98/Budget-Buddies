@@ -1,12 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.SettingsPage"
-             Title="SettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Settings">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="10">
+
+            <Frame CornerRadius="10" Padding="10">
+                <StackLayout Spacing="0">
+                    <Label Text="Budget Preferences" FontAttributes="Bold"/>
+                    <Entry x:Name="BudgetPreference" Placeholder="$" Keyboard="Numeric"/>
+                    <Button Text="Save Budget" 
+                            Clicked="OnSaveButtonClicked" 
+                            Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="10">
+                <StackLayout Spacing="0">
+                    <Label Text="Currency Preference" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal">
+                        <RadioButton x:Name="DollarsRadioButton" Content="$ Dollars" GroupName="CurrencyGroup"/>
+                        <RadioButton x:Name="EurosRadioButton" Content="€ Euros" GroupName="CurrencyGroup"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Button Text="Log Out" 
+                Clicked="OnLogoutClicked" Margin="0,20,0,0"/>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

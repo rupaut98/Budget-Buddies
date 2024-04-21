@@ -59,9 +59,11 @@
 	<ItemGroup>
 	  <None Remove="Pages\" />
 	  <None Remove="Models\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
 	  <Folder Include="Models\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 </Project>

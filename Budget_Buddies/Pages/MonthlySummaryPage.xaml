@@ -5,15 +5,13 @@
     <ScrollView>
         <VerticalStackLayout Spacing="25" Padding="30">
             <Label Text="Monthly Summary" FontSize="Large" HorizontalOptions="Center"/>
+            
+            <Label x:Name="FoodTotalLabel" Text="Amount for Food = {0}" />
+            <Label x:Name="UtilitiesTotalLabel" Text="Amount for Utilities = {0}" />
+            <Label x:Name="RentTotalLabel" Text="Amount for Rent = {0}" />
+            <Label x:Name="EntertainmentTotalLabel" Text="Amount for Entertainment = {0}" />
 
-            <!-- Totals for each category -->
-            <Label x:Name="FoodTotalLabel" Text="Amount for Food = $" />
-            <Label x:Name="UtilitiesTotalLabel" Text="Amount for Utilities = $" />
-            <Label x:Name="RentTotalLabel" Text="Amount for Rent = $" />
-            <Label x:Name="EntertainmentTotalLabel" Text="Amount for Entertainment = $" />
-
-            <!-- Most expensive entry -->
-            <Label x:Name="MostExpensiveLabel" Text="Most Expensive = $" />
+            <Label x:Name="MostExpensiveLabel" Text="Most Expensive = {0}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
