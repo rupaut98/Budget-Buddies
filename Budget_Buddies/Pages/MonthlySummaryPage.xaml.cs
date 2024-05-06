@@ -7,15 +7,27 @@ namespace Budget_Buddies.Pages;
 
 public partial class MonthlySummaryPage : ContentPage
 {
+    private string currencySymbol = "$";
+    private string currencyPreference = "Dollars";
     float Food {  get; set; }
     float Utilities { get; set; }
     float Rent {  get; set; }
     float Entertainment { get; set; }
 
-    float totalAmount { get; set; }
+    decimal totalAmount { get; set; }
 	public MonthlySummaryPage()
 	{
-		InitializeComponent();
+        InitializeComponent();
+        currencyPreference = SettingsPage.PreferencesHelper.GetCurrencyPreference();
+
+        if (currencyPreference == "Euros") // Corrected the syntax by using parentheses for the condition
+        {
+            currencySymbol = "€";
+        }
+        else
+        {
+            currencySymbol = "$";
+        }
         LoadSummary();
 
         ChartEntry[] entries = DisplayChart();
@@ -59,7 +71,9 @@ public partial class MonthlySummaryPage : ContentPage
         decimal mostExpensiveAmount = 0;
         string mostExpensiveCategory = "";
 
-        
+        // Fetch exchange rate from an external source
+        decimal exchangeRate = 0.94m; // Implement this method to fetch the exchange rate
+
         var totals = new Dictionary<string, decimal>{{ "Food", 0 },{ "Utilities", 0 },{ "Rent", 0 },{ "Entertainment", 0 }};
 
         
@@ -76,15 +90,22 @@ public partial class MonthlySummaryPage : ContentPage
                 
                 decimal sum = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
                 totals[category] = sum;
-                string placeholder = sum.ToString();
 
-                totalAmount = totalAmount + Int32.Parse(placeholder);
-                
+                // Convert amount to euros if currencySymbol is €
+                if (currencySymbol == "€")
+                {
+                    sum *= exchangeRate; // Convert to euros
+                }
+
+                totals[category] = sum;
+
                 if (sum > mostExpensiveAmount)
                 {
                     mostExpensiveAmount = sum;
                     mostExpensiveCategory = category;
                 }
+
+                totalAmount = totalAmount + totals[category];
             }
         }
 

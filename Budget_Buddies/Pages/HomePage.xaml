@@ -1,43 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Budget_Buddies.Converters"
              x:Class="Budget_Buddies.Pages.HomePage"
              Title="HomePage">
 
-	<ScrollView>
-		<VerticalStackLayout Spacing="25" Padding="20">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CurrencyFormatConverter x:Key="CurrencyFormatConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-			<Label Text="Home Page" FontSize="Large" HorizontalOptions="Center"/>
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="10">
 
-			<Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-					</Grid.ColumnDefinitions>
+            <Frame CornerRadius="10" Padding="10">
+                <StackLayout>
+                    <Label Text="Budget" FontSize="Medium"/>
+                    <Entry Placeholder="{Binding CurrencySymbol, StringFormat='{}{0}'}"
+                           Keyboard="Numeric"
+                           Text="{Binding Budget, Mode=TwoWay, StringFormat='{}{0:F2}'}" />
+                    <Label Text="Left" FontSize="Medium"/>
+                    <Entry Placeholder="{Binding CurrencySymbol, StringFormat='{}{0}'}"
+                           Keyboard="Numeric"
+                           Text="{Binding AmountLeft, Mode=OneWay, StringFormat='{}{0:F2}'}"
+                           IsEnabled="False" />
+                </StackLayout>
+            </Frame>
 
-					<Label Text="Budget" Grid.Row="0" Grid.Column="0"/>
-					<Entry x:Name="BudgetEntry" Placeholder="enter budget" Completed="OnBudgetEntered" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"/>
-					
-					<Label Text="Left" Grid.Row="0" Grid.Column="1"/>
-					<Label x:Name="LeftAmount" Text="" Grid.row="1" Grid.Column="1"/>
-				</Grid>
-			</Frame>
+            <Label Text="Most recent expenses:" FontSize="Medium"/>
 
-			<Label Text="Most Recent Expenses:" HorizontalOptions="Center"/>
+            <ListView x:Name="ExpensesListView" ItemsSource="{Binding RecentExpenses}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding ExpenseName}" VerticalOptions="Center"/>
+                                <Label Text="{Binding ExpenseAmount, Converter={StaticResource CurrencyFormatConverter}, ConverterParameter={Binding CurrencySymbol}}" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-			<Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
-				<HorizontalStackLayout>
-					<Entry x:Name="ExpenseName" Placeholder="Expense1" Completed="OnRecentExpenseNameEntered"/>
-					<Label Text=" = "/>
-					<Entry x:Name="ExpenseAmount" Placeholder="enter cost" Completed="OnRecentExpenseEntered" Keyboard="Numeric"/>
-				</HorizontalStackLayout>
-			</Frame>
-		</VerticalStackLayout>
-	</ScrollView>
-	
+
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>
