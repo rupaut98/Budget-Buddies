@@ -2,210 +2,152 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.SettingsPage">
-    <Grid       RowDefinitions="65,Auto,Auto"
-                ColumnDefinitions="*">
-        <Border 
-            Grid.Row="1"
-            Grid.RowSpan="2"
+    <StackLayout>
+        <Border BackgroundColor="White"
+               Margin="0,-50,-5,0"
+               HeightRequest="60"
+               HorizontalOptions="Fill"
+                Stroke="White"
+                />
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Text="Settings"
+                FontFamily="ARIBLO"
+                FontSize="45"
+                TextColor="#216C92"
+                HorizontalOptions="Center"/>
+            <Button 
+                Text="&lt;"
+                WidthRequest="50"
+                HeightRequest="50"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Margin="10,0,0,0"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                FontSize="90"
+                FontFamily="BeauRivage"
+                FontAttributes="Bold"
+                TextColor="#216C92"
+                Clicked="OnBackButtonClicked"/>
+        </Grid>
+
+        <Frame
             VerticalOptions="Center"
+            HorizontalOptions="Center" 
             WidthRequest="350"
-            HeightRequest="500"
             BackgroundColor="White"
-            StrokeShape="RoundRectangle 30"
-            Stroke="White"
-            Margin="0,80,0,0"
-            >
-            <Border.Shadow>
-                <Shadow Brush="#E1C2C2"
-                        Opacity="10"
-                         />
-            </Border.Shadow>
-            <Grid RowDefinitions="Auto,Auto,30,Auto,Auto,Auto"
-                ColumnDefinitions="*,*">
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Text="    Budget Preferences"
-                    FontFamily="ARIBLO"
-                    FontSize="18"
-                    TextColor="#2A496F"
-                    HorizontalOptions="Center"
-                    Padding="15"
-                    Margin="0,20,0,0"/>
+            BorderColor="#E1C2C2"
+            Margin="0,100,0,0"
+            CornerRadius="35"
+            HeightRequest="500">
+            <StackLayout Spacing="0">
 
-                <Entry
-                    x:Name="BudgetPreference"
-                    Text="$ Enter Budget"
-                    FontFamily="ARIBLO"
-                    FontSize="17"
-                    TextColor="#5B98A6"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    WidthRequest="150"
-                    HeightRequest="30"
-                    HorizontalOptions="Center"
-                    Margin="0,15,10,0"/>
+                <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Budget Preferences"
+                        FontFamily="ARIBLO"
+                        FontSize="25"
+                        TextColor="#2A496F"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="0,0,0,20"
+                        />
 
-                <Label
-                    Text="Color Themes"
-                    FontFamily="ARIBLO"
-                    FontSize="18"
-                    TextColor="#2A496F"
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Grid.Column="0"
+                    <Entry
+                        x:Name="BudgetPreference"
+                        Placeholder="Enter Budget"
+                        PlaceholderColor="#5B98A6"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Keyboard="Numeric"
+                        TextColor="#5B98A6"
+                        HorizontalTextAlignment="Center"
+                        FontFamily="ARIBLO"
+                        FontSize="20"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        WidthRequest="150"
+                        Margin="0,0,10,20"
+                        />
+
+                </Grid>
+
+                <Button Text="Save Budget" 
+                    FontSize="20"
                     HorizontalOptions="Center"
-                    Padding="15"
-                    Margin="0,30,0,0"
+                    Background="#216C92"
+                    Clicked="OnSaveButtonClicked" 
+                    Margin="0,10,0,20"
                     />
 
-                <RadioButton
-                    x:Name="LighThemePreference"
-                    Content="Light"
-                    FontFamily="ARIBLO"
-                    FontSize="18"
-                    TextColor="#5B98A6"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Margin="0,20,0,0"/>
+                <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+                    <Label
+                        Text="Currency Preference" 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="ARIBLO"
+                        FontSize="25"
+                        TextColor="#2A496F"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="0,20,0,0"
+                        />
 
-                <RadioButton
-                    x:Name="DarkThemePreference"
-                    Content="Dark"
-                    FontFamily="ARIBLO"
-                    FontSize="18"
-                    TextColor="#5B98A6"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    />
-
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Text="Your Name"
-                    FontFamily="ARIBLO"
-                    FontSize="18"
-                    TextColor="#2A496F"
-                    HorizontalOptions="Center"
-                    Padding="15"
-                    Margin="0,20,0,0"/>
-
-                <Label
-                    x:Name="name"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Text="PlaceHolder"
-                    FontFamily="ARIBLO"
-                    FontSize="18"
-                    TextColor="#5B98A6"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    Margin="0,20,25,0"/>
+                    <StackLayout Orientation="Vertical" Padding="15" Grid.Row="0" Grid.Column="1">
+                        <RadioButton x:Name="DollarsRadioButton" Content="$ Dollars" GroupName="CurrencyGroup" FontFamily="ARIBLO" FontSize="20" TextColor="#2A496F" HorizontalOptions="Start"/>
+                        <RadioButton x:Name="EurosRadioButton" Content="€ Euros" GroupName="CurrencyGroup" FontFamily="ARIBLO" FontSize="20" TextColor="#2A496F" HorizontalOptions="Start"/>
+                    </StackLayout>
+                </Grid>
+                <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Your Name"
+                        FontFamily="ARIBLO"
+                        FontSize="25"
+                        TextColor="#2A496F"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="0,20,0,0"/>
+                    <Entry
+                        x:Name="name"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Text="{Binding Name}"
+                        FontFamily="ARIBLO"
+                        FontSize="18"
+                        TextColor="#5B98A6"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        />
+                </Grid>
                 <Button 
                     x:Name="ChangeNameButton"
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
                     FontFamily="ARIBLO"
-                    FontSize="16"
-                    Margin="0,10,0,0"
-                    TextColor="#2847DC"
+                    FontSize="20"
+                    Margin="0,20,0,0"
+                    TextColor="White"
                     HorizontalOptions="Center"
-                    Background="Transparent"
+                    Background="#216C92"
                     Text="Change Name"
                     BorderColor="Transparent"
                     Clicked="OnChangeNameClicked"/>
 
                 <Button 
-                    x:Name="SettingsSubmit"
-                    Text="Submit Changes"
-                    BackgroundColor="#5499B7"
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    WidthRequest="150"
-                    HeightRequest="30"
-                    Margin="0,110,0,0"
-                    Clicked="OnChangeSettingsClicked"
-                    IsVisible="true"/>
-
-                <StackLayout
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    x:Name="ChangeName"
-                    Orientation="Vertical" 
+                    Text="Log Out" 
                     HorizontalOptions="Center"
-                    Padding="20"
-                    IsVisible="False">
-                    <Label 
-                        x:Name="NameLabel"
-                        Text="Enter a new name:" 
-                        FontSize="18" 
-                        HorizontalOptions="Center"
-                        TextColor="#2A496F"/>
-                    <Entry 
-                        x:Name="NameEntry"
-                        Text="your name"
-                        TextColor="#5B98A6"
-                        Margin="0,0,0,0"
-                        FontFamily="ARIBLO"
-                        FontSize="17"
-                        WidthRequest="150"
-                        HeightRequest="30"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center"
-                        VerticalTextAlignment="End"/>
-                    <Button 
-                        x:Name="SubmitName"
-                        Text="Submit"
-                        TextColor="White"
-                        Grid.ColumnSpan="2"
-                        FontFamily="ARIBLO"
-                        FontSize="16"
-                        HorizontalOptions="Center"
-                        Background="#5499B7"
-                        BorderColor="#5499B7"
-                        Clicked="OnChangeSubmitNameClicked"
-                        Margin="0,20,0,0"/>
-
-                </StackLayout>
-
-            </Grid>
-        </Border>
-
-        <Border 
-            Grid.Row="0"
-            BackgroundColor="White"
-            Stroke="White"
-            HeightRequest="70"
-            Margin="0,-130,0,0"/>
-
-        <Label
-            Grid.Row="0"
-            Text="Settings"
-            FontFamily="ARIBLO"
-            FontSize="45"
-            TextColor="#216C92"
-            HorizontalOptions="Center"
-            Margin="0,0,0,0"
-         />
-
-        <Button 
-            WidthRequest="50"
-            HeightRequest="50"
-            HorizontalOptions="Start"
-            Margin="10,30,0,0"
-            BackgroundColor="Transparent"
-            BorderColor="Transparent"
-            Text="&lt;"
-            FontSize="90"
-            FontFamily="BeauRivage"
-            FontAttributes="Bold"
-            TextColor="#216C92"
-            Clicked="OnBackButtonClicked"
-            />
-    </Grid>
+                    BorderColor="Transparent"
+                    TextColor="DarkBlue"
+                    Clicked="OnLogoutClicked" 
+                    BackgroundColor="Transparent"
+                    Margin="0,30,0,0"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 </ContentPage>

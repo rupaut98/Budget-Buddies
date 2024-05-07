@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.WelcomePage"
-             BackgroundColor="White">
+             >
 
     <Grid RowDefinitions="*,*,60,160,50,50,90"
      ColumnDefinitions="*,*,*,*,*">
@@ -11,7 +11,7 @@
               Grid.Column="0"
               Grid.ColumnSpan="6"
               BackgroundColor="#FAE6E6"/>
-        
+
         <Border Grid.Row="0"
               Grid.RowSpan="2"
               Grid.Column="0"
@@ -20,7 +20,7 @@
               StrokeShape="Ellipse"
               Stroke="#FAE6E6"
               />
-        
+
         <Border 
               Grid.Row="4"
               Grid.RowSpan="2"
@@ -30,7 +30,7 @@
              />
 
         <Border 
-              Grid.Row="3"
+              Grid.Row="2"
               Grid.RowSpan="6"
               Grid.Column="0"
               Grid.ColumnSpan="6"
@@ -53,12 +53,15 @@
           />
 
         <Button 
-            Grid.Row="2"
-            Grid.RowSpan="2"
+            Grid.Row="1"
+            Grid.RowSpan="5"
             Grid.Column="1"
             Grid.ColumnSpan="3"
             Text="Guest Sign In" 
-            Margin="70,50,70,110"
+            HeightRequest="60"
+            WidthRequest="150"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="Center"
             BackgroundColor="#5499B7"
             Clicked="OnGuestSignInClicked"/>
 
@@ -68,10 +71,11 @@
             FontSize="45"
             TextColor="#164D63"
             Grid.Row="0"
-            Grid.RowSpan="2"
-            Grid.Column="2"
-            Grid.ColumnSpan="3"
-            Margin="30,180,0,0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
             />
 
         <Label
@@ -79,11 +83,12 @@
             FontFamily="BeauRivage"
             FontSize="50"
             TextColor="#164D63"
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Margin="28,100,0,0"
+            Grid.Row="0"
+            Grid.RowSpan="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
     />
         <Border Grid.Row="7"
            Grid.Column="0"
@@ -91,7 +96,7 @@
            BackgroundColor="#3F88A6"
            Stroke="#3F88A6"    
            StrokeThickness="4" />
-        
+
         <Border Grid.Row="5"
             Grid.Column="2"
             Grid.ColumnSpan="4"
@@ -107,7 +112,7 @@
             Stroke="#D8F3FF"
             StrokeThickness="6"
             StrokeShape="RoundRectangle 200 0 0 0"/>
-        
+
         <Border 
             Grid.Row="0"
             Grid.Column="0"
@@ -122,9 +127,10 @@
             FontSize="65"
             TextColor="#FF7171"
             Grid.Row="0"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Margin="50,30,0,0"/>
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"/>
 
         <Border 
             Grid.Row="6"

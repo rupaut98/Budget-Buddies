@@ -7,15 +7,27 @@ namespace Budget_Buddies.Pages;
 
 public partial class MonthlySummaryPage : ContentPage
 {
-    float Food {  get; set; }
+    private string currencySymbol = "$";
+    private string currencyPreference = "Dollars";
+    float Food { get; set; }
     float Utilities { get; set; }
-    float Rent {  get; set; }
+    float Rent { get; set; }
     float Entertainment { get; set; }
 
-    float totalAmount { get; set; }
-	public MonthlySummaryPage()
-	{
-		InitializeComponent();
+    decimal totalAmount { get; set; }
+    public MonthlySummaryPage()
+    {
+        InitializeComponent();
+        currencyPreference = SettingsPage.PreferencesHelper.GetCurrencyPreference();
+
+        if (currencyPreference == "Euros") // Corrected the syntax by using parentheses for the condition
+        {
+            currencySymbol = "€";
+        }
+        else
+        {
+            currencySymbol = "$";
+        }
         LoadSummary();
 
         ChartEntry[] entries = DisplayChart();
@@ -31,8 +43,8 @@ public partial class MonthlySummaryPage : ContentPage
 
     ChartEntry[] DisplayChart()
     {
-       ChartEntry[] entries = new[]
-       {
+        ChartEntry[] entries = new[]
+        {
             new ChartEntry(Food)
             {
 
@@ -59,10 +71,12 @@ public partial class MonthlySummaryPage : ContentPage
         decimal mostExpensiveAmount = 0;
         string mostExpensiveCategory = "";
 
-        
-        var totals = new Dictionary<string, decimal>{{ "Food", 0 },{ "Utilities", 0 },{ "Rent", 0 },{ "Entertainment", 0 }};
+        // Fetch exchange rate from an external source
+        decimal exchangeRate = 0.94m; // Implement this method to fetch the exchange rate
 
-        
+        var totals = new Dictionary<string, decimal> { { "Food", 0 }, { "Utilities", 0 }, { "Rent", 0 }, { "Entertainment", 0 } };
+
+
         App.DatabaseConnection.Open();
 
         foreach (var category in totals.Keys.ToList())
@@ -73,22 +87,29 @@ public partial class MonthlySummaryPage : ContentPage
                 command.Parameters.AddWithValue("@Category", category);
                 var result = command.ExecuteScalar();
 
-                
+
                 decimal sum = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
                 totals[category] = sum;
-                string placeholder = sum.ToString();
 
-                totalAmount = totalAmount + Int32.Parse(placeholder);
-                
+                // Convert amount to euros if currencySymbol is €
+                if (currencySymbol == "€")
+                {
+                    sum *= exchangeRate; // Convert to euros
+                }
+
+                totals[category] = sum;
+
                 if (sum > mostExpensiveAmount)
                 {
                     mostExpensiveAmount = sum;
                     mostExpensiveCategory = category;
                 }
+
+                totalAmount = totalAmount + totals[category];
             }
         }
 
-        
+
         App.DatabaseConnection.Close();
 
         Food = float.Parse($"{totals["Food"]}", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
@@ -98,14 +119,14 @@ public partial class MonthlySummaryPage : ContentPage
         Rent = float.Parse($"{totals["Rent"]}", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
 
         Entertainment = float.Parse($"{totals["Entertainment"]}", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-       // MostExpensiveLabel.Text = $"Most Expensive = {mostExpensiveCategory} with ${mostExpensiveAmount}";
+        // MostExpensiveLabel.Text = $"Most Expensive = {mostExpensiveCategory} with ${mostExpensiveAmount}";
 
     }
 
     void DisplayAmount()
     {
         FoodTotalLabel.Text = $"${Food.ToString()}";
-        
+
         UtilitiesTotalLabel.Text = $"${Utilities.ToString()}";
 
         RentTotalLabel.Text = $"${Rent.ToString()}";
@@ -120,5 +141,5 @@ public partial class MonthlySummaryPage : ContentPage
         await Navigation.PushAsync(new MenuPage());
     }
 
-  
+
 }
