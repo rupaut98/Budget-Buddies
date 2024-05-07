@@ -10,38 +10,45 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="10">
+        <StackLayout Padding="50" Spacing="10">
             
-            <Frame CornerRadius="10" Padding="10">
+            <Frame CornerRadius="30" Padding="10" WidthRequest="450" HeightRequest="200">
                 <StackLayout>
-                    <Label Text="Budget" FontSize="Medium"/>
+                    <Label Text="Budget" FontSize="Large"/>
                     <Entry Placeholder="{Binding CurrencySymbol, StringFormat='{}{0}'}"
                            Keyboard="Numeric"
+                           FontSize="Small"
                            Text="{Binding Budget, Mode=TwoWay, StringFormat='{}{0:F2}'}" />
-                    <Label Text="Left" FontSize="Medium"/>
+                    <Label Text="Left" FontSize="Large"/>
                     <Entry Placeholder="{Binding CurrencySymbol, StringFormat='{}{0}'}"
                            Keyboard="Numeric"
+                           FontSize="Small"
                            Text="{Binding AmountLeft, Mode=OneWay, StringFormat='{}{0:F2}'}"
                            IsEnabled="False" />
                 </StackLayout>
             </Frame>
             
-            <Label Text="Most recent expenses:" FontSize="Medium"/>
-            
-            <ListView x:Name="ExpensesListView" ItemsSource="{Binding RecentExpenses}">
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <ViewCell>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding ExpenseName}" VerticalOptions="Center"/>
-                    <Label Text="{Binding ExpenseAmount, Converter={StaticResource CurrencyFormatConverter}, ConverterParameter={Binding CurrencySymbol}}" VerticalOptions="Center"/>
-                </StackLayout>
-            </ViewCell>
-        </DataTemplate>
-    </ListView.ItemTemplate>
-</ListView>
+            <Label Text="Most recent expenses:" FontSize="Large" Margin="30" VerticalOptions="Center"/>
 
             
+            <Frame CornerRadius="30" Padding="10" WidthRequest="300">
+                
+                <ListView x:Name="ExpensesListView" ItemsSource="{Binding RecentExpenses}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ExpenseName}" VerticalOptions="Center" Margin="0, 4, 0, 4" FontSize="Medium"/>
+                                    <Label Text=":" VerticalOptions="Center" Margin="0, 4, 10, 4" FontSize="Medium"/>
+                                    <Label Text="{Binding ExpenseAmount, Converter={StaticResource CurrencyFormatConverter}, ConverterParameter={Binding CurrencySymbol}}" VerticalOptions="Center" Margin="0, 4, 0, 4" FontSize="Medium"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </Frame>
+
         </StackLayout>
     </ScrollView>
 </ContentPage>
