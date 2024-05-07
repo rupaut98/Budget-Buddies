@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Android.Accounts;
+using Microsoft.Data.Sqlite;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Budget_Buddies.Pages
             }
         }
 
-        private string _currencySymbol = "$"; 
+        private string _currencySymbol = "$";
         public string CurrencySymbol
         {
             get => _currencySymbol;
@@ -43,8 +44,10 @@ namespace Budget_Buddies.Pages
                 {
                     _currencySymbol = value;
                     OnPropertyChanged(nameof(CurrencySymbol));
-                    UpdateAmountLeft();  
-                    UpdateExpensesCurrency();  
+                    // Redisplay all amounts in the new currency
+                    LoadBudgetPreference();
+                    LoadRecentExpenses();
+                    UpdateAmountLeft();
                 }
             }
         }
@@ -72,28 +75,10 @@ namespace Budget_Buddies.Pages
             LoadRecentExpenses();
         }
 
-        private void UpdateExpensesCurrency()
-        {
-            
-            var updatedExpenses = RecentExpenses.Select(expense => new Expense
-            {
-                ExpenseName = expense.ExpenseName,
-                ExpenseAmount = ConvertAmountToCurrentCurrency(expense.ExpenseAmount)
-            }).ToList();
-
-            RecentExpenses.Clear();
-            foreach (var exp in updatedExpenses)
-            {
-                RecentExpenses.Add(exp);
-            }
-
-            
-            OnPropertyChanged(nameof(RecentExpenses));
-        }
-
         private decimal ConvertAmountToCurrentCurrency(decimal amountInDollars)
         {
-            return amountInDollars * (CurrencySymbol == "€" ? GetUsdToEuroRate() : 1m);
+            decimal conversionRate = CurrencySymbol == "€" ? GetUsdToEuroRate() : 1m;
+            return Math.Round(amountInDollars * conversionRate, 2);
         }
 
         private void LoadCurrencyPreference()
@@ -104,7 +89,7 @@ namespace Budget_Buddies.Pages
 
         private decimal GetUsdToEuroRate()
         {
-            return 0.94m;
+            return 0.92887359m; 
         }
 
         private void LoadBudgetPreference()
@@ -116,14 +101,11 @@ namespace Budget_Buddies.Pages
                 using (var command = new SqliteCommand(commandText, connection))
                 {
                     var result = command.ExecuteScalar();
-                    Budget = result != null ? Convert.ToDecimal(result) : 0;
-                    if (CurrencySymbol == "€")
-                    {
-                        Budget *= GetUsdToEuroRate();
-                    }
+                    _budget = result != null ? Convert.ToDecimal(result) : 0;
                 }
                 connection.Close();
             }
+            Budget = ConvertAmountToCurrentCurrency(_budget);
         }
 
         private void LoadRecentExpenses()
@@ -134,7 +116,7 @@ namespace Budget_Buddies.Pages
                 RecentExpenses.Add(new Expense
                 {
                     ExpenseName = expense.ExpenseName,
-                    ExpenseAmount = expense.ExpenseAmount * (CurrencySymbol == "€" ? GetUsdToEuroRate() : 1)
+                    ExpenseAmount = ConvertAmountToCurrentCurrency(expense.ExpenseAmount)
                 });
             }
             UpdateAmountLeft();
@@ -169,8 +151,8 @@ namespace Budget_Buddies.Pages
         private void UpdateAmountLeft()
         {
             decimal totalExpenses = GetAllExpensesSumFromDatabase();
-            AmountLeft = Budget - totalExpenses;  
-            OnPropertyChanged(nameof(AmountLeft)); 
+            AmountLeft = Budget - totalExpenses; 
+            AmountLeft = ConvertAmountToCurrentCurrency(AmountLeft); 
         }
 
         private decimal GetAllExpensesSumFromDatabase()
@@ -187,7 +169,6 @@ namespace Budget_Buddies.Pages
                 }
                 connection.Close();
             }
-            totalExpenses *= (CurrencySymbol == "€" ? GetUsdToEuroRate() : 1);
             return totalExpenses;
         }
 
@@ -196,7 +177,6 @@ namespace Budget_Buddies.Pages
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 
     public class Expense
     {

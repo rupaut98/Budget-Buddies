@@ -1,24 +1,19 @@
 ﻿using Microsoft.Data.Sqlite;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Budget_Buddies.Pages;
 
 public partial class MonthlySummaryPage : ContentPage
 {
-    private string currencySymbol = "$"; // Default currency symbol
+    private string currencySymbol = "$";
     private string currencyPreference = "Dollars";
+
     public MonthlySummaryPage()
     {
         InitializeComponent();
         currencyPreference = SettingsPage.PreferencesHelper.GetCurrencyPreference();
-
-        if (currencyPreference == "Euros") // Corrected the syntax by using parentheses for the condition
-        {
-            currencySymbol = "€";
-        }
-        else
-        {
-            currencySymbol = "$";
-        }
+        currencySymbol = currencyPreference == "Euros" ? "€" : "$";
         LoadSummary();
     }
 
@@ -26,9 +21,6 @@ public partial class MonthlySummaryPage : ContentPage
     {
         decimal mostExpensiveAmount = 0;
         string mostExpensiveCategory = "";
-
-        // Fetch exchange rate from an external source
-        decimal exchangeRate = 0.94m; // Implement this method to fetch the exchange rate
 
         var totals = new Dictionary<string, decimal> { { "Food", 0 }, { "Utilities", 0 }, { "Rent", 0 }, { "Entertainment", 0 } };
 
@@ -44,11 +36,8 @@ public partial class MonthlySummaryPage : ContentPage
 
                 decimal sum = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
 
-                // Convert amount to euros if currencySymbol is €
-                if (currencySymbol == "€")
-                {
-                    sum *= exchangeRate; // Convert to euros
-                }
+                // Convert from USD to the preferred currency only for display purposes
+                sum = ConvertCurrency(sum, "USD", currencyPreference);
 
                 totals[category] = sum;
 
@@ -62,7 +51,17 @@ public partial class MonthlySummaryPage : ContentPage
 
         App.DatabaseConnection.Close();
 
+        UpdateLabels(totals, mostExpensiveAmount, mostExpensiveCategory);
+    }
 
+    private decimal ConvertCurrency(decimal amount, string fromCurrency, string toCurrency)
+    {
+        decimal conversionRate = fromCurrency == "USD" && toCurrency == "Euros" ? 0.92887359m : 1m;
+        return Math.Round(amount * conversionRate, 2);
+    }
+
+    private void UpdateLabels(Dictionary<string, decimal> totals, decimal mostExpensiveAmount, string mostExpensiveCategory)
+    {
         FoodTotalLabel.Text = $"Amount for Food = {currencySymbol}{totals["Food"]}";
         UtilitiesTotalLabel.Text = $"Amount for Utilities = {currencySymbol}{totals["Utilities"]}";
         RentTotalLabel.Text = $"Amount for Rent = {currencySymbol}{totals["Rent"]}";
