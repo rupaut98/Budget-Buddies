@@ -44,7 +44,6 @@ namespace Budget_Buddies.Pages
                 {
                     _currencySymbol = value;
                     OnPropertyChanged(nameof(CurrencySymbol));
-                    // Redisplay all amounts in the new currency
                     LoadBudgetPreference();
                     LoadRecentExpenses();
                     UpdateAmountLeft();

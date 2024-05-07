@@ -36,7 +36,7 @@ public partial class MonthlySummaryPage : ContentPage
 
                 decimal sum = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
 
-                // Convert from USD to the preferred currency only for display purposes
+               
                 sum = ConvertCurrency(sum, "USD", currencyPreference);
 
                 totals[category] = sum;

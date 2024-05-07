@@ -18,7 +18,7 @@ public partial class App : Application
 
         MainPage = new NavigationPage(new WelcomePage());
 
-        ClearDatabaseData();
+        //ClearDatabaseData();
     }
 
     private void InitializeDatabase()
