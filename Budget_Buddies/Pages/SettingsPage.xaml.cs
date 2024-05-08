@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 
 namespace Budget_Buddies.Pages;
 
@@ -10,19 +10,40 @@ public partial class SettingsPage : ContentPage
     public SettingsPage()
     {
         InitializeComponent();
+
+        if (Preferences.Default.ContainsKey("Name") == true)
+        {
+            string Name = Preferences.Get("Name", "User");
+            name.Text = Name;
+        }
+        else
+        {
+            name.Text = "User";
+        }
         LoadBudgetPreference();
         LoadCurrencyPreference();
+    }
+
+
+    private void OnChangeNameClicked(object sender, EventArgs e)
+    {
+        Preferences.Default.Set("Name", name.Text);
+        name.Text = name.Text;
     }
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new WelcomePage());
     }
+    private async void OnBackButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MenuPage());
+    }
 
     private void LoadBudgetPreference()
     {
-        
-        BudgetPreference.Text = GetBudgetPreference().ToString("F2"); 
+
+        BudgetPreference.Text = GetBudgetPreference().ToString("F2");
     }
 
     private decimal GetBudgetPreference()
@@ -39,7 +60,7 @@ public partial class SettingsPage : ContentPage
                     return Convert.ToDecimal(result);
                 }
             }
-            return 0; 
+            return 0;
         }
     }
 
@@ -61,7 +82,7 @@ public partial class SettingsPage : ContentPage
 
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
-        
+
         if (decimal.TryParse(BudgetPreference.Text, out decimal budget))
         {
             SaveBudgetPreference(budget);
@@ -84,7 +105,7 @@ public partial class SettingsPage : ContentPage
                 using (var command = new SqliteCommand(commandText, connection))
                 {
                     var result = command.ExecuteScalar();
-                    return result?.ToString() ?? "Dollars"; 
+                    return result?.ToString() ?? "Dollars";
                 }
             }
         }
@@ -114,7 +135,7 @@ public partial class SettingsPage : ContentPage
     private void LoadCurrencyPreference()
     {
         string currency = SettingsPage.PreferencesHelper.GetCurrencyPreference();
-       
+
         dollarsRadioButton = this.FindByName<RadioButton>("DollarsRadioButton");
         eurosRadioButton = this.FindByName<RadioButton>("EurosRadioButton");
 
@@ -127,7 +148,7 @@ public partial class SettingsPage : ContentPage
             eurosRadioButton.IsChecked = true;
         }
 
-        
+
         dollarsRadioButton.CheckedChanged += OnCurrencyPreferenceChanged;
         eurosRadioButton.CheckedChanged += OnCurrencyPreferenceChanged;
     }
@@ -137,10 +158,9 @@ public partial class SettingsPage : ContentPage
         if (e.Value)
         {
             var radioButton = (RadioButton)sender;
-            SaveCurrencyPreference(radioButton.Content.ToString().Split(' ')[1]); 
-            
+            SaveCurrencyPreference(radioButton.Content.ToString().Split(' ')[1]);
+
         }
     }
-
 
 }

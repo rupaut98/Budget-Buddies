@@ -1,4 +1,4 @@
-﻿using Budget_Buddies.Pages;
+using Budget_Buddies.Pages;
 using Microsoft.Data.Sqlite;
 using System.IO;
 using Microsoft.Maui.Storage;

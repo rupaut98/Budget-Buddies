@@ -1,4 +1,4 @@
-﻿using Android.Accounts;
+
 using Microsoft.Data.Sqlite;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

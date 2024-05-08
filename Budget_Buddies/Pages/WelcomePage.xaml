@@ -2,15 +2,152 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.WelcomePage"
-             Title="WelcomePage">
+             >
 
-    <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
-        <Label Text="Welcome" FontSize="Large" HorizontalOptions="Center"/>
-        <Label Text="to" FontSize="Large" HorizontalOptions="Center"/>
-        <Label Text="Simple Saver" FontSize="Large" HorizontalOptions="Center"/>
-        
-        <Button Text="Guest Sign In" 
-                HorizontalOptions="FillAndExpand"
-                Clicked="OnGuestSignInClicked"/>
-    </VerticalStackLayout>
+    <Grid RowDefinitions="*,*,60,160,50,50,90"
+     ColumnDefinitions="*,*,*,*,*">
+        <Border Grid.Row="0"
+              Grid.RowSpan="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="6"
+              BackgroundColor="#FAE6E6"/>
+
+        <Border Grid.Row="0"
+              Grid.RowSpan="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="6"
+              BackgroundColor="#FAE6E6"
+              StrokeShape="Ellipse"
+              Stroke="#FAE6E6"
+              />
+
+        <Border 
+              Grid.Row="4"
+              Grid.RowSpan="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="5"
+              BackgroundColor="#FAE6E6"
+             />
+
+        <Border 
+              Grid.Row="2"
+              Grid.RowSpan="6"
+              Grid.Column="0"
+              Grid.ColumnSpan="6"
+              BackgroundColor="#FAE6E6"
+              Stroke="#FAE6E6"
+              StrokeShape="Ellipse"/>
+
+
+        <Border
+              Grid.Row="0"
+              Grid.RowSpan="6"
+              Grid.Column="0"
+              Grid.ColumnSpan="5"
+              BackgroundColor="#CAE6EC"
+              Stroke="#CAE6EC"
+              HeightRequest="370"
+              WidthRequest="370"
+              StrokeShape="Ellipse"
+              Margin="0,45,0,0"
+          />
+
+        <Button 
+            Grid.Row="1"
+            Grid.RowSpan="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Text="Guest Sign In" 
+            HeightRequest="60"
+            WidthRequest="150"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="Center"
+            BackgroundColor="#5499B7"
+            Clicked="OnGuestSignInClicked"/>
+
+        <Label
+            Text="to"
+            FontFamily="BeauRivage"
+            FontSize="45"
+            TextColor="#164D63"
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            />
+
+        <Label
+            Text="Simple Saver"
+            FontFamily="BeauRivage"
+            FontSize="50"
+            TextColor="#164D63"
+            Grid.Row="0"
+            Grid.RowSpan="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+    />
+        <Border Grid.Row="7"
+           Grid.Column="0"
+           Grid.ColumnSpan="6"
+           BackgroundColor="#3F88A6"
+           Stroke="#3F88A6"    
+           StrokeThickness="4" />
+
+        <Border Grid.Row="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="4"
+            Background="#869FAB"
+            Stroke="#869FAB"
+            StrokeThickness="6"
+            StrokeShape="RoundRectangle 200 0 0 0"/>
+
+        <Border Grid.Row="4"
+            Grid.Column="4"
+            Grid.ColumnSpan="4"
+            Background="#D8F3FF"
+            Stroke="#D8F3FF"
+            StrokeThickness="6"
+            StrokeShape="RoundRectangle 200 0 0 0"/>
+
+        <Border 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            BackgroundColor="#FAE6E6"
+            Stroke="#FAE6E6"
+            Margin="0,-50,0,30"/>
+
+        <Label
+            Text="Welcome"
+            FontFamily="BeauRivage"
+            FontSize="65"
+            TextColor="#FF7171"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"/>
+
+        <Border 
+            Grid.Row="6"
+            Grid.Column="0"
+            BackgroundColor="#E1B5B5"
+            Stroke="#E1B5B5"
+            StrokeShape="Ellipse"
+            Margin="-20,20,20,-20"/>
+
+        <Border 
+            Grid.Row="0"
+            Grid.Column="4"
+            BackgroundColor="#B1DCED"
+            Stroke="#B1DCED"
+            StrokeShape="Ellipse"
+            Margin="20,-80,-50,140"/>
+
+    </Grid>
+
 </ContentPage>

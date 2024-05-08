@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -52,6 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microcharts.Maui" Version="1.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.4" />
 	</ItemGroup>
@@ -59,7 +60,12 @@
 	<ItemGroup>
 	  <None Remove="Pages\" />
 	  <None Remove="Models\" />
+
+	  <None Remove="Resources\Fonts\ArialTh.ttf" />
+	  <None Remove="Resources\Fonts\ARIBL0.ttf" />
+	  <None Remove="Resources\Fonts\BeauRivage-Regular.ttf" />
 	  <None Remove="Converters\" />
+
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />

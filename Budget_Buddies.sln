@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1706.11
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget_Buddies", "Budget_Buddies\Budget_Buddies.csproj", "{A557155E-6F06-416E-9A6C-C3F345B912CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Budget_Buddies", "Budget_Buddies\Budget_Buddies.csproj", "{A557155E-6F06-416E-9A6C-C3F345B912CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +13,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A557155E-6F06-416E-9A6C-C3F345B912CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

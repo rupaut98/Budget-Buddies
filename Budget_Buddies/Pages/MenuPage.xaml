@@ -5,6 +5,9 @@
              Title="Menu">
 
     <VerticalStackLayout Spacing="15" Padding="30" VerticalOptions="Center">
+        <Label Text="Hello" FontSize="40" HorizontalTextAlignment="Center"/>
+        <Label x:Name ="name" Text="{Binding Name}" FontSize="40" HorizontalTextAlignment="Center"/>
+
         <Label Text="Simple Saver" FontAttributes="Italic" FontSize="30" HorizontalOptions="Center"/>
         <Label Text="Menu" FontSize="24" HorizontalOptions="Center"/>
         
