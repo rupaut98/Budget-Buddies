@@ -3,6 +3,7 @@ using Microsoft.Data.Sqlite;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System;
 
 namespace Budget_Buddies.Pages
 {
@@ -12,6 +13,11 @@ namespace Budget_Buddies.Pages
         {
             InitializeComponent();
             this.BindingContext = new HomePageViewModel();
+        }
+
+        private async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MenuPage());
         }
     }
 
@@ -65,6 +71,7 @@ namespace Budget_Buddies.Pages
             }
         }
 
+
         public ObservableCollection<Expense> RecentExpenses { get; set; } = new ObservableCollection<Expense>();
 
         public HomePageViewModel()
@@ -73,6 +80,8 @@ namespace Budget_Buddies.Pages
             LoadBudgetPreference();
             LoadRecentExpenses();
         }
+
+
 
         private decimal ConvertAmountToCurrentCurrency(decimal amountInDollars)
         {
@@ -182,4 +191,5 @@ namespace Budget_Buddies.Pages
         public string ExpenseName { get; set; }
         public decimal ExpenseAmount { get; set; }
     }
+
 }

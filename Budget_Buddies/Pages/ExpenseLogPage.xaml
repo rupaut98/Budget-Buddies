@@ -2,79 +2,79 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.ExpenseLogPage"
-             Title="Expenses Log">
-
-    <ScrollView>
+             >
+    <StackLayout>
+        <Border BackgroundColor="White"
+            Margin="0,-50,-5,0"
+            HeightRequest="60"
+            HorizontalOptions="Fill"
+            Stroke="White"/>
         <VerticalStackLayout Spacing="25" Padding="30">
-            <Label Text="Expenses Log" FontSize="Large" HorizontalOptions="Center"/>
+            <Grid RowDefinitions="Auto" ColumnDefinitions="*,*" Margin="0,-50,0,0">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Home Page"
+                    FontFamily="ARIBLO"
+                    FontSize="45"
+                    TextColor="#216C92"
+                    HorizontalOptions="Center"/>
+                <Button 
+                    Text="&lt;"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    Margin="10,0,0,0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    FontSize="90"
+                    FontFamily="BeauRivage"
+                    FontAttributes="Bold"
+                    TextColor="#216C92"
+                    Clicked="OnBackButtonClicked"/>
+            </Grid>
 
-            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="Food" Grid.Row="0" Grid.Column="0"/>
-                    <Entry x:Name="FoodExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
-                    <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
-
-                </Grid>
-            </Frame>
-            
-            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="Utilities" Grid.Row="0" Grid.Column="0"/>
-                     <Entry x:Name="UtilitiesExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
-                    <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
-
-                </Grid>
-            </Frame>
-
-            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="Rent" Grid.Row="0" Grid.Column="0"/>
-                     <Entry x:Name="RentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
-                    <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
-
-                </Grid>
+            <Frame CornerRadius="10" Padding="10" Margin="0,50,0,10" BorderColor="#E1C2C2">
+                <VerticalStackLayout>
+                    <Label Text="Food" FontFamily="ARIBLO" FontSize="20"
+                            TextColor="#2A496F"
+                            HorizontalOptions="Start"/>
+                    <Entry x:Name="FoodExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric"/>
+                    <Label Text="{Binding CurrencySymbol}"/>
+                </VerticalStackLayout>
             </Frame>
 
-            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10" BorderColor="#E1C2C2">
+                <VerticalStackLayout>
+                    <Label Text="Utilities" FontFamily="ARIBLO" FontSize="20"
+                            TextColor="#2A496F"
+                            HorizontalOptions="Start"/>
+                    <Entry x:Name="UtilitiesExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric"/>
+                    <Label Text="{Binding CurrencySymbol}"/>
+                </VerticalStackLayout>
+            </Frame>
 
-                    <Label Text="Entertainment" Grid.Row="0" Grid.Column="0"/>
-                     <Entry x:Name="EntertainmentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
-                    <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10" BorderColor="#E1C2C2">
+                <VerticalStackLayout>
+                    <Label Text="Rent" FontFamily="ARIBLO" FontSize="20"
+                            TextColor="#2A496F"
+                            HorizontalOptions="Start"/>
+                    <Entry x:Name="RentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric"/>
+                    <Label Text="{Binding CurrencySymbol}"/>
+                </VerticalStackLayout>
+            </Frame>
 
-                </Grid>
+            <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10" BorderColor="#E1C2C2">
+                <VerticalStackLayout>
+                    <Label Text="Entertainment" FontFamily="ARIBLO" FontSize="20"
+                            TextColor="#2A496F"
+                            HorizontalOptions="Start"/>
+                    <Entry x:Name="EntertainmentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric"/>
+                    <Label Text="{Binding CurrencySymbol}"/>
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
-    </ScrollView>
+    </StackLayout>
 </ContentPage>

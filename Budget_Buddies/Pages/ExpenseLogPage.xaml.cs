@@ -99,9 +99,9 @@ namespace Budget_Buddies.Pages
             return 1.0765523m;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        new public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        override protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -119,6 +119,11 @@ namespace Budget_Buddies.Pages
                 }
             }
             App.DatabaseConnection.Close();
+        }
+
+        private async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MenuPage());
         }
     }
 }
