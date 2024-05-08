@@ -1,10 +1,9 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using System;
 using System.ComponentModel;
 
 namespace Budget_Buddies.Pages
 {
-
     public partial class ExpenseLogPage : ContentPage
     {
         private string currencySymbol;
@@ -20,6 +19,7 @@ namespace Budget_Buddies.Pages
                 }
             }
         }
+
         public ExpenseLogPage()
         {
             InitializeComponent();
@@ -29,9 +29,7 @@ namespace Budget_Buddies.Pages
 
         private void LoadCurrencyPreference()
         {
-
             string preference = SettingsPage.PreferencesHelper.GetCurrencyPreference();
-            ;
             CurrencySymbol = preference == "Dollars" ? "$" : "€";
         }
 
@@ -40,17 +38,17 @@ namespace Budget_Buddies.Pages
             var entry = sender as Entry;
             if (entry != null && decimal.TryParse(entry.Text, out decimal expenseAmount))
             {
-
                 string category = DetermineCategory(entry);
                 if (!string.IsNullOrWhiteSpace(category))
                 {
+                    
+                    expenseAmount = ConvertToUSDIfNeeded(expenseAmount);
                     InsertExpenseIntoDatabase(category, expenseAmount);
                     entry.Text = "";
                 }
             }
             else
             {
-
                 DisplayAlert("Invalid Input", "Please enter a valid number for the expense.", "OK");
             }
         }
@@ -70,38 +68,40 @@ namespace Budget_Buddies.Pages
                 return null;
         }
 
-
         private void InsertExpenseIntoDatabase(string category, decimal amount)
         {
-            if (CurrencySymbol == "€")
-            {
-                amount = ConvertEurosToDollars(amount);
-            }
             App.DatabaseConnection.Open();
-
             var commandText = "INSERT INTO Expenses (Category, Amount) VALUES (@Category, @Amount);";
             using (var command = new SqliteCommand(commandText, App.DatabaseConnection))
             {
                 command.Parameters.AddWithValue("@Category", category);
-                command.Parameters.AddWithValue("@Amount", amount);
+                command.Parameters.AddWithValue("@Amount", Math.Round(amount, 2));
                 command.ExecuteNonQuery();
             }
-
             App.DatabaseConnection.Close();
-
             LogExpensesFromDatabase();
         }
 
-        private decimal ConvertEurosToDollars(decimal euros)
+        
+        private decimal ConvertToUSDIfNeeded(decimal amount)
         {
-
-            decimal conversionRate = 1.07m;
-            return euros * conversionRate;
+            if (CurrencySymbol == "€")
+            {
+                decimal conversionRate = GetEuroToUsdRate();
+                return Math.Round(amount * conversionRate, 2);
+            }
+            return amount; 
         }
 
-        new public event PropertyChangedEventHandler PropertyChanged;
+        private decimal GetEuroToUsdRate()
+        {
+            
+            return 1.0765523m;
+        }
 
-        override protected void OnPropertyChanged(string propertyName)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -109,7 +109,6 @@ namespace Budget_Buddies.Pages
         private void LogExpensesFromDatabase()
         {
             App.DatabaseConnection.Open();
-
             var commandText = "SELECT * FROM Expenses ORDER BY Id DESC LIMIT 5";
             using (var command = new SqliteCommand(commandText, App.DatabaseConnection))
             {
@@ -119,9 +118,7 @@ namespace Budget_Buddies.Pages
                     Console.WriteLine($"ID: {reader["Id"]}, Category: {reader["Category"]}, Amount: {reader["Amount"]}");
                 }
             }
-
             App.DatabaseConnection.Close();
         }
-
     }
 }

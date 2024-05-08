@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -60,12 +60,16 @@
 	<ItemGroup>
 	  <None Remove="Pages\" />
 	  <None Remove="Models\" />
+
 	  <None Remove="Resources\Fonts\ArialTh.ttf" />
 	  <None Remove="Resources\Fonts\ARIBL0.ttf" />
 	  <None Remove="Resources\Fonts\BeauRivage-Regular.ttf" />
+	  <None Remove="Converters\" />
+
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
 	  <Folder Include="Models\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 </Project>

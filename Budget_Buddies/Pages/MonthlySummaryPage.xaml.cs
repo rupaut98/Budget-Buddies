@@ -1,33 +1,30 @@
-﻿using Microcharts;
+using Microcharts;
 using Microsoft.Data.Sqlite;
 using SkiaSharp;
 using System.Formats.Tar;
 using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
+using AndroidX.CardView.Widget;
+
 namespace Budget_Buddies.Pages;
 
 public partial class MonthlySummaryPage : ContentPage
 {
     private string currencySymbol = "$";
     private string currencyPreference = "Dollars";
+
     float Food { get; set; }
     float Utilities { get; set; }
     float Rent { get; set; }
     float Entertainment { get; set; }
-
     decimal totalAmount { get; set; }
+
     public MonthlySummaryPage()
     {
         InitializeComponent();
         currencyPreference = SettingsPage.PreferencesHelper.GetCurrencyPreference();
-
-        if (currencyPreference == "Euros") // Corrected the syntax by using parentheses for the condition
-        {
-            currencySymbol = "€";
-        }
-        else
-        {
-            currencySymbol = "$";
-        }
+        currencySymbol = currencyPreference == "Euros" ? "€" : "$";
         LoadSummary();
 
         ChartEntry[] entries = DisplayChart();
@@ -37,8 +34,6 @@ public partial class MonthlySummaryPage : ContentPage
             Entries = entries,
             IsAnimated = true,
         };
-
-        DisplayAmount();
     }
 
     ChartEntry[] DisplayChart()
@@ -47,7 +42,6 @@ public partial class MonthlySummaryPage : ContentPage
         {
             new ChartEntry(Food)
             {
-
                 Color = SKColor.Parse("#164D63")
             },
             new ChartEntry(Utilities)
@@ -71,11 +65,7 @@ public partial class MonthlySummaryPage : ContentPage
         decimal mostExpensiveAmount = 0;
         string mostExpensiveCategory = "";
 
-        // Fetch exchange rate from an external source
-        decimal exchangeRate = 0.94m; // Implement this method to fetch the exchange rate
-
         var totals = new Dictionary<string, decimal> { { "Food", 0 }, { "Utilities", 0 }, { "Rent", 0 }, { "Entertainment", 0 } };
-
 
         App.DatabaseConnection.Open();
 
@@ -87,15 +77,10 @@ public partial class MonthlySummaryPage : ContentPage
                 command.Parameters.AddWithValue("@Category", category);
                 var result = command.ExecuteScalar();
 
-
                 decimal sum = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
-                totals[category] = sum;
 
-                // Convert amount to euros if currencySymbol is €
-                if (currencySymbol == "€")
-                {
-                    sum *= exchangeRate; // Convert to euros
-                }
+
+                sum = ConvertCurrency(sum, "USD", currencyPreference);
 
                 totals[category] = sum;
 
@@ -109,7 +94,6 @@ public partial class MonthlySummaryPage : ContentPage
             }
         }
 
-
         App.DatabaseConnection.Close();
 
         Food = float.Parse($"{totals["Food"]}", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
@@ -119,27 +103,24 @@ public partial class MonthlySummaryPage : ContentPage
         Rent = float.Parse($"{totals["Rent"]}", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
 
         Entertainment = float.Parse($"{totals["Entertainment"]}", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-        // MostExpensiveLabel.Text = $"Most Expensive = {mostExpensiveCategory} with ${mostExpensiveAmount}";
 
+        UpdateLabels(totals, mostExpensiveAmount, mostExpensiveCategory);
     }
 
-    void DisplayAmount()
+    private decimal ConvertCurrency(decimal amount, string fromCurrency, string toCurrency)
     {
-        FoodTotalLabel.Text = $"${Food.ToString()}";
-
-        UtilitiesTotalLabel.Text = $"${Utilities.ToString()}";
-
-        RentTotalLabel.Text = $"${Rent.ToString()}";
-
-        EntertainmentTotalLabel.Text = $"${Entertainment.ToString()}";
-
-        Total.Text = $"${totalAmount.ToString()}";
+        decimal conversionRate = fromCurrency == "USD" && toCurrency == "Euros" ? 0.92887359m : 1m;
+        return Math.Round(amount * conversionRate, 2);
     }
 
-    private async void OnBackButtonClicked(object sender, EventArgs e)
+    private void UpdateLabels(Dictionary<string, decimal> totals, decimal mostExpensiveAmount, string mostExpensiveCategory)
     {
-        await Navigation.PushAsync(new MenuPage());
+        FoodTotalLabel.Text = $"{currencySymbol}{totals["Food"]}";
+        UtilitiesTotalLabel.Text = $"{currencySymbol}{totals["Utilities"]}";
+        RentTotalLabel.Text = $"{currencySymbol}{totals["Rent"]}";
+        EntertainmentTotalLabel.Text = $"{currencySymbol}{totals["Entertainment"]}";
+        Total.Text = $"{currencySymbol}{totalAmount.ToString()}";
     }
 
-
+    private async void OnBackButtonClicked(object sender, EventArgs e) => await Navigation.PushAsync(new MenuPage());
 }

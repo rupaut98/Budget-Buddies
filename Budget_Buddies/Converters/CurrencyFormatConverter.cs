@@ -10,7 +10,7 @@ namespace Budget_Buddies.Converters
         {
             if (value is decimal decimalValue && parameter is string currencySymbol)
             {
-                // Formats the decimal value as a currency string with two decimal places.
+                
                 return $"{currencySymbol}{decimalValue:N2}";
             }
             return value.ToString();

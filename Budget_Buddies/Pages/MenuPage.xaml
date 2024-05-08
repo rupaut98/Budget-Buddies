@@ -11,13 +11,13 @@
         <Label Text="Simple Saver" FontAttributes="Italic" FontSize="30" HorizontalOptions="Center"/>
         <Label Text="Menu" FontSize="24" HorizontalOptions="Center"/>
         
-        <Button Text="Home Page" 
-                Clicked="OnHomePageClicked"/>
-        <Button Text="Expense Log" 
-                Clicked="OnExpenseLogClicked"/>
-        <Button Text="Monthly Summary" 
-                Clicked="OnMonthlySummaryClicked"/>
-        <Button Text="Settings" 
-                Clicked="OnSettingsClicked"/>
+        <Button x:Name="HomePageButton" Text="Home Page" 
+                Clicked="OnHomePageClicked" BackgroundColor="#214994"/>
+        <Button x:Name="ExpenseLogButton" Text="Expense Log" 
+                Clicked="OnExpenseLogClicked" BackgroundColor="#214994"/>
+        <Button x:Name="MonthlySummaryButton" Text="Monthly Summary" 
+                Clicked="OnMonthlySummaryClicked" BackgroundColor="#214994"/>
+        <Button x:Name="SettingsButton" Text="⚙️" 
+                Clicked="OnSettingsClicked" BackgroundColor="#214994" HorizontalOptions="Start" VerticalOptions="End"/>
     </VerticalStackLayout>
 </ContentPage>

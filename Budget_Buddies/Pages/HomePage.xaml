@@ -1,10 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:Budget_Buddies.Converters"
              x:Class="Budget_Buddies.Pages.HomePage"
-             Title="HomePage">
-
+             Title="Home Page">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyFormatConverter x:Key="CurrencyFormatConverter"/>
@@ -13,7 +11,7 @@
 
     <ScrollView>
         <StackLayout Padding="50" Spacing="10">
-
+            
             <Frame CornerRadius="30" Padding="10" WidthRequest="450" HeightRequest="200">
                 <StackLayout>
                     <Label Text="Budget" FontSize="Large"/>
@@ -29,12 +27,12 @@
                            IsEnabled="False" />
                 </StackLayout>
             </Frame>
-
+            
             <Label Text="Most recent expenses:" FontSize="Large" Margin="30" VerticalOptions="Center"/>
 
-
+            
             <Frame CornerRadius="30" Padding="10" WidthRequest="300">
-
+                
                 <ListView x:Name="ExpensesListView" ItemsSource="{Binding RecentExpenses}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -48,7 +46,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
+                
             </Frame>
 
         </StackLayout>

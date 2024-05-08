@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget_Buddies.Pages.ExpenseLogPage"
@@ -24,7 +24,7 @@
 
                 </Grid>
             </Frame>
-
+            
             <Frame CornerRadius="10" Padding="10" Margin="0,0,0,10">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Utilities" Grid.Row="0" Grid.Column="0"/>
-                    <Entry x:Name="UtilitiesExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                     <Entry x:Name="UtilitiesExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
                     <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
 
                 </Grid>
@@ -53,7 +53,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Rent" Grid.Row="0" Grid.Column="0"/>
-                    <Entry x:Name="RentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                     <Entry x:Name="RentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
                     <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
 
                 </Grid>
@@ -70,7 +70,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Entertainment" Grid.Row="0" Grid.Column="0"/>
-                    <Entry x:Name="EntertainmentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                     <Entry x:Name="EntertainmentExpenseEntry" Placeholder="enter expense" Completed="OnExpenseEntered" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
                     <Label Text="{Binding CurrencySymbol}" Grid.Row="0" Grid.Column="2"/>
 
                 </Grid>

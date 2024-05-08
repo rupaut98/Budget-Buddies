@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 
 namespace Budget_Buddies.Pages;
 
@@ -10,6 +10,7 @@ public partial class SettingsPage : ContentPage
     public SettingsPage()
     {
         InitializeComponent();
+
         if (Preferences.Default.ContainsKey("Name") == true)
         {
             string Name = Preferences.Get("Name", "User");
@@ -23,28 +24,17 @@ public partial class SettingsPage : ContentPage
         LoadCurrencyPreference();
     }
 
+
     private void OnChangeNameClicked(object sender, EventArgs e)
     {
         Preferences.Default.Set("Name", name.Text);
         name.Text = name.Text;
     }
-    private void OnSaveButtonClicked(object sender, EventArgs e)
-    {
 
-        if (decimal.TryParse(BudgetPreference.Text, out decimal budget))
-        {
-            SaveBudgetPreference(budget);
-            DisplayAlert("Success", "Budget preference saved.", "OK");
-        }
-        else
-        {
-            DisplayAlert("Error", "Invalid budget entry. Please enter a number.", "OK");
-        }
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new WelcomePage());
     }
-    /* private void OnChangeSettingsClicked(object sender, EventArgs e)
-     {
-         name.Text = NameChange;
-     }*/
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new MenuPage());
@@ -55,7 +45,8 @@ public partial class SettingsPage : ContentPage
 
         BudgetPreference.Text = GetBudgetPreference().ToString("F2");
     }
-    static decimal GetBudgetPreference()
+
+    private decimal GetBudgetPreference()
     {
         using (var connection = new SqliteConnection($"Filename={App.DatabasePath}"))
         {
@@ -72,7 +63,8 @@ public partial class SettingsPage : ContentPage
             return 0;
         }
     }
-    static void SaveBudgetPreference(decimal budget)
+
+    private void SaveBudgetPreference(decimal budget)
     {
         using (var connection = new SqliteConnection($"Filename={App.DatabasePath}"))
         {
@@ -87,6 +79,21 @@ public partial class SettingsPage : ContentPage
             }
         }
     }
+
+    private void OnSaveButtonClicked(object sender, EventArgs e)
+    {
+
+        if (decimal.TryParse(BudgetPreference.Text, out decimal budget))
+        {
+            SaveBudgetPreference(budget);
+            DisplayAlert("Success", "Budget preference saved.", "OK");
+        }
+        else
+        {
+            DisplayAlert("Error", "Invalid budget entry. Please enter a number.", "OK");
+        }
+    }
+
     public static class PreferencesHelper
     {
         public static string GetCurrencyPreference()
@@ -104,7 +111,7 @@ public partial class SettingsPage : ContentPage
         }
     }
 
-    static void SaveCurrencyPreference(string currency)
+    private void SaveCurrencyPreference(string currency)
     {
         using (var connection = new SqliteConnection($"Filename={App.DatabasePath}"))
         {
@@ -123,6 +130,7 @@ public partial class SettingsPage : ContentPage
             }
         }
     }
+
 
     private void LoadCurrencyPreference()
     {
@@ -154,8 +162,5 @@ public partial class SettingsPage : ContentPage
 
         }
     }
-    private async void OnLogoutClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new WelcomePage());
-    }
+
 }
