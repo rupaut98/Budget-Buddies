@@ -21,7 +21,7 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Text="Expense Log"
+                    Text="Home Page"
                     FontFamily="ARIBLO"
                     FontSize="45"
                     TextColor="#216C92"
