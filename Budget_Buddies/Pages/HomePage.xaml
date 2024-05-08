@@ -1,25 +1,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:Budget_Buddies.Converters"
-             x:Class="Budget_Buddies.Pages.HomePage"
-             Title="Home Page">
+             x:Class="Budget_Buddies.Pages.HomePage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyFormatConverter x:Key="CurrencyFormatConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ScrollView>
-        <StackLayout Padding="50" Spacing="10">
-            
-            <Frame CornerRadius="30" Padding="10" WidthRequest="450" HeightRequest="200">
+    <StackLayout>
+        <Border BackgroundColor="White"
+                Margin="0,-50,-5,0"
+                HeightRequest="60"
+                HorizontalOptions="Fill"
+                Stroke="White"/>
+        <VerticalStackLayout Spacing="25" Padding="30">
+
+            <Grid RowDefinitions="Auto" ColumnDefinitions="*,*" Margin="0,-50,0,0">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Expense Log"
+                    FontFamily="ARIBLO"
+                    FontSize="45"
+                    TextColor="#216C92"
+                    HorizontalOptions="Center"/>
+                <Button 
+                    Text="&lt;"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    Margin="10,0,0,0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    FontSize="90"
+                    FontFamily="BeauRivage"
+                    FontAttributes="Bold"
+                    TextColor="#216C92"
+                    Clicked="OnBackButtonClicked"/>
+            </Grid>
+
+            <Frame CornerRadius="30" Padding="10" Margin="0,50,0,10" BorderColor="#E1C2C2">
                 <StackLayout>
-                    <Label Text="Budget" FontSize="Large"/>
+                    <Label Text="Budget" FontFamily="ARIBLO" FontSize="20"
+                            TextColor="#2A496F"
+                            HorizontalOptions="Start"/>
                     <Entry Placeholder="{Binding CurrencySymbol, StringFormat='{}{0}'}"
                            Keyboard="Numeric"
                            FontSize="Small"
                            Text="{Binding Budget, Mode=TwoWay, StringFormat='{}{0:F2}'}" />
-                    <Label Text="Left" FontSize="Large"/>
+                    <Label Text="Left" FontFamily="ARIBLO" FontSize="20"
+                            TextColor="#2A496F"
+                            HorizontalOptions="Start"/>
                     <Entry Placeholder="{Binding CurrencySymbol, StringFormat='{}{0}'}"
                            Keyboard="Numeric"
                            FontSize="Small"
@@ -27,12 +61,12 @@
                            IsEnabled="False" />
                 </StackLayout>
             </Frame>
-            
-            <Label Text="Most recent expenses:" FontSize="Large" Margin="30" VerticalOptions="Center"/>
 
-            
+            <Label Text="Most recent expenses:" FontSize="Large" VerticalOptions="Center"/>
+
+
             <Frame CornerRadius="30" Padding="10" WidthRequest="300">
-                
+
                 <ListView x:Name="ExpensesListView" ItemsSource="{Binding RecentExpenses}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -46,9 +80,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                
-            </Frame>
 
-        </StackLayout>
-    </ScrollView>
+            </Frame>
+        </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>
